@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ODK Bulk Uploader</title>
+</head>
+<body>
+  <h1>Upload Data to ODK Central</h1>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <p style="color: {{ 'green' if category == 'success' else 'red' }}">{{ message }}</p>
+    {% endfor %}
+  {% endwith %}
+
+  <form action="/" method="post" enctype="multipart/form-data">
+    <p>CSV File: <input type="file" name="csv_file" required></p>
+    <p>Base URL: <input type="text" name="base_url" placeholder="https://yourserver.org/" required></p>
+    <p>Project ID: <input type="text" name="project_id" required></p>
+    <p>XML Form ID: <input type="text" name="xml_form_id" required></p>
+    <p>Form Version: <input type="text" name="form_version" required></p>
+    <p>Username: <input type="email" name="username" required></p>
+    <p>Password: <input type="password" name="password" required></p>
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html>
